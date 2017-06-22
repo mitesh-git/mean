@@ -1,0 +1,42 @@
+<form name="EditTask" ng-submit="EditDailyTask()">
+    <md-dialog aria-label="List dialog" role="dialog">
+        <md-dialog-content>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Edit Task </span>
+                    <div ng-repeat="error in reg.registerError">
+                        <p class="alert alert-danger animated fadeIn">{{error.msg}}</p>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <div class="layout-gt-md-row" layout-gt-sm="row">
+                    <md-input-container class="md-block flex-gt-sm">
+                        <label>Date</label>
+                        <md-datepicker ng-model="editDailyTaskReport.date"></md-datepicker>
+                    </md-input-container>
+                    <md-input-container class="md-block flex-gt-sm">
+                        <label>Status</label>
+                        <md-select ng-model="editDailyTaskReport.status" placeholder="Select Status">
+                            <md-option ng-value="Completed">Completed</md-option>
+                            <md-option ng-value="Working">Working</md-option>
+                            <md-option ng-value="Pending">Pending</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block">
+                    <label>Task</label>
+                    <input type="text" ng-model="editDailyTaskReport.task">
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Remark</label>
+                    <input type="text" ng-model="editDailyTaskReport.remark">
+                </md-input-container>
+            </md-card-content>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-button class="md-primary" type="submit">Submit</md-button>
+        </md-dialog-actions>
+    </md-dialog>
+</form>

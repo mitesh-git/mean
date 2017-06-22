@@ -1,0 +1,110 @@
+dmongoTo Install Mean
+
+---------------Node.js
+	tar -zxf node-v6.11.0.tar.gz
+	cd node-v6.11.0
+	./configure && make && sudo make install
+	*********** or *********
+	curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+	sudo apt-get install -y nodejs
+	
+
+sudo chmod 777 -R /usr/local/lib/node_modules
+
+---------------Prerequisite packages
+
+	---------Mean currently uses gulp as a build tool and bower to manage frontend packages.
+		sudo npm install -g gulp
+	-----------and bower
+		sudo npm install -g bower
+
+
+---------------Mongodb (community Edition)
+	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+	echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+	sudo apt-get update
+	sudo apt-get install -y mongodb-org
+	--------- After Mongodb Installation
+
+		---------Need To give Permission to Follwing Folder if Service is not active
+			sudo chmod 777 -R /var/lib/mongodb
+			sudo chmod 777 -R /var/log/mongodb
+
+	*********** old one **********
+	sudo service mongodb start 
+	sudo service mongodb stop
+	sudo service mongodb restart
+	*********** New with Default mongodb server start
+	sudo nano /etc/systemd/system/mongodb.service
+	------------------ Data	
+		[Unit]
+		Description=High-performance, schema-free document-oriented database
+		After=network.target
+
+		[Service]
+		User=mongodb
+		ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
+
+		[Install]
+		WantedBy=multi-user.target
+
+	sudo systemctl start mongodb
+	sudo systemctl status mongodb
+	------------- Enable it permantly
+	sudo systemctl enable mongodb
+
+
+
+********** Needed admin email for admin login ******************
+
+--------------- Install Mean
+	sudo npm install -g mean-cli
+	mean init <myApp>
+		----- username - admin   |   password - admin123
+		----- admin email - sachin@monadinfotech.com
+
+	cd <myApp> && npm install
+--------------- Invoke node with a task manager
+
+	gulp 
+	------ issue
+			Internal watch failed: watch /var/www/html/meanProject1/bundle 
+			--Solution 
+				echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+			Error: listen EADDRINUSE 127.0.0.1:5858
+			-- Solution
+				$ sudo lsof -i:5858
+				$ sudo kill <processid>
+
+
+	node server
+--------------- In Browser
+	http://localhost::3000
+
+---------------- Running on diff port
+	export PORT=3001 && gulp
+
+
+
+
+After Installation package -
+
+
+
+npm install connect-multiparty --save
+
+Installed Packges  ----
+mean install upload
+mean install socket
+mean install token
+
+
+Not Working -----
+
+mean install mean-admin
+
+mean install gmap
+mean install crop
+mean install video
+

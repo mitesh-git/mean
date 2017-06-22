@@ -1,0 +1,28 @@
+<md-card ui-view="" flex="100" class="ng-scope _md flex-100" ng-controller="MypackageController">
+    <md-content>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">User Tasks - </span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-button class="md-primary" href="/mypackage/newtask"> Add New Task </md-button>
+        <md-card-content>
+           <table class="table table-bordered" width="100%" border="0" style="border-collapse: collapse;">
+              <tr ng-repeat="usertask in usertasks">
+                <td width="50px"><input type="checkbox" ng-model="checkbox[usertask._id]"></td>
+                <td width="100px">{{usertask.date | date:'dd/MM/yyyy'}}</td>
+                  <td width="220px">{{usertask.user}}</td>
+                <td width="30%">{{usertask.task}}</td>
+                <td width="100px">{{usertask.task_status}}</td>
+                <td width="30%">{{usertask.remark}}</td>
+                <td width="40px">
+                    <md-button ng-click="editTask(usertask)"> Edit </md-button>
+                </td>
+                  <td width="40px">
+                    <md-button class="md-warn" ng-click="deleteTask(usertask._id)"> Delete </md-button></td>
+              </tr>
+            </table>
+            <md-button class="md-warn" ng-click="SendTaskEmail()"> Send Status Report </md-button></td>
+        </md-card-content>
+    </md-content>
+</md-card>
