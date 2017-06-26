@@ -13,7 +13,8 @@ angular.module('mean.meanStarter')
             $scope.sendemail = function () {
                 $http.post('/api/contact-us', {
                     name: $scope.contactus.name,
-                    message: $scope.contactus.message
+                    message: $scope.contactus.message,
+                    email: $scope.contactus.email
                 })
                 .then(function(response) {
                     $scope.contactus = {};

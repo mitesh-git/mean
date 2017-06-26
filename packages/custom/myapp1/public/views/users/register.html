@@ -6,55 +6,69 @@
       <div ng-repeat="error in reg.registerError">
         <p class="alert alert-danger animated fadeIn">{{error.msg}}</p>
       </div>
+        <!--<p class="alert alert-danger animated fadeIn">
+       <span ng-show="signUpForm.first_name.$touched && signUpForm.first_name.$invalid">First Name is required.</span>
+        <div ng-messages="signUpForm.register-email.$error">
+            <div ng-message="required">required</div>
+            <div ng-message="email">invalid email</div>
+        </div>
+        </p>-->
     </md-card-title-text>
   </md-card-title>
 
   <md-card-content>
+      <div class="layout-gt-sm-row" layout-gt-sm="row">
+            <md-input-container class="md-block flex-gt-sm">
+              <label>First Name</label>
+              <input type="text" ng-model="reg.user.first_name" required>
+            </md-input-container>
 
-    <md-input-container class="md-block">
-      <label>First Name</label>
-      <input type="text" ng-model="reg.user.first_name" required>
-    </md-input-container>
+            <md-input-container class="md-block flex-gt-sm">
+              <label>Last Name</label>
+              <input type="text" ng-model="reg.user.last_name" required>
+            </md-input-container>
+      </div>
+      <div class="layout-gt-sm-row" layout-gt-sm="row">
+          <md-input-container class="md-block">
+              <label>Date of Birth</label>
+              <md-datepicker ng-model="reg.user.birth_date" md-max-date="maxDate" md-min-date="minDate" ng-required="true"></md-datepicker>
+          </md-input-container>
+          <md-input-container class="md-block flex-gt-sm">
+              <label>State/Province</label>
+              <input type="text" ng-model="reg.user.state" required>
+          </md-input-container>
 
-    <md-input-container class="md-block">
-      <label>Last Name</label>
-      <input type="text" ng-model="reg.user.last_name" required>
-    </md-input-container>
-
+          <md-input-container class="md-block flex-gt-sm">
+              <label>Country</label>
+              <input type="text" ng-model="reg.user.country" required>
+          </md-input-container>
+      </div>
     <md-input-container class="md-block">
       <label>Username</label>
-      <input type="text" ng-model="reg.user.username" required>
+      <input type="text" name="username" ng-model="reg.user.username" ng-minlength="3" required>
+        <p ng-show="signUpForm.username.$error.minlength" class="help-block">Username is too short.</p>
     </md-input-container>
 
     <md-input-container class="md-block">
       <label>Email Address</label>
-      <input type="email" ng-model="reg.user.email" required>
+      <input type="email" name="register-email" ng-model="reg.user.email" required>
     </md-input-container>
 
-    <md-input-container class="md-block">
-      <label>Date of Birth</label>
-      <md-datepicker ng-model="reg.user.birth_date" md-max-date="maxDate" md-min-date="minDate" ng-required="true"></md-datepicker>
-    </md-input-container>
+
 
     <md-input-container class="md-block">
       <label>Password</label>
-      <input type="password" ng-model="reg.user.password" required>
+      <input type="password" name="registerpassword" ng-model="reg.user.password" required>
     </md-input-container>
 
     <md-input-container class="md-block">
       <label>Confirm Password</label>
-      <input type="password" ng-model="reg.user.confirmPassword" required>
+      <input type="password" name="registerconfirmpassword" ng-model="reg.user.confirmPassword" required>
+        <span ng-show="signUpForm.registerpassword.$dirty &&
+        signUpForm.registerconfirmpassword.$dirty &&
+        reg.user.confirmPassword !== reg.user.password">Password and Confirm Password does not match.</span>
     </md-input-container>
 
-    <md-input-container class="md-block">
-      <label>State/Province</label>
-      <input type="text" ng-model="reg.user.state">
-    </md-input-container>
-
-    <md-input-container class="md-block">
-      <label>Country</label>
-      <input type="text" ng-model="reg.user.country">
-    </md-input-container>
 
   </md-card-content>
 
@@ -63,7 +77,7 @@
     <md-button ui-sref="forgot-password">Forgot Password</md-button>
     <md-button ui-sref="auth.login">Login</md-button>
     <span flex></span>
-    <md-button class="md-primary" type="submit">Join</md-button>
+    <md-button class="md-primary" type="submit" ng-disabled="signUpForm.$invalid || reg.user.confirmPassword !== reg.user.password">Join</md-button>
 
   </md-card-actions>
 

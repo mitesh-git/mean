@@ -37,7 +37,7 @@ MeanStarter.register(function (app, users, system) {
 
             subject: req.body.name+' Contacted.', // Subject line
             text: req.body.page, // plain text body
-            html: req.body.message // html body
+            html: "Email : <BR>"+req.body.email +"<BR> Message : <BR>"+ req.body.message // html body
         };
 
         sendMail(ContactUsmailOptions, function(error, response){
