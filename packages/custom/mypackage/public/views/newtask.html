@@ -9,33 +9,30 @@
         </md-card-title-text>
     </md-card-title>
     <md-card-content>
-
-        <md-card-content>
-            <div class="layout-gt-sm-row" layout-gt-sm="row">
-                <md-input-container class="md-block flex-gt-sm">
-                    <label>Date</label>
-                    <md-datepicker ng-model="DailyTaskReport.date"></md-datepicker>
-                </md-input-container>
-                <md-input-container class="md-block flex-gt-sm">
-                    <label>Status</label>
-                    <md-select ng-model="DailyTaskReport.task_status" required="">
-                        <md-option value=""> Select Task Status</md-option>
-                        <md-option value="Completed">Completed</md-option>
-                        <md-option value="Working">Working</md-option>
-                        <md-option value="Pending">Pending</md-option>
-                    </md-select>
-                </md-input-container>
-            </div>
-            <md-input-container class="md-block">
-                <label>Task</label>
-                <input type="text" ng-model="DailyTaskReport.task" required>
+        <div class="layout-gt-sm-row" layout-gt-sm="row">
+            <md-input-container class="md-block flex-gt-sm">
+                <label>Date</label>
+                <md-datepicker ng-model="DailyTaskReport.date"></md-datepicker>
             </md-input-container>
-
-            <md-input-container class="md-block">
-                <label>Remark</label>
-                <input type="text" ng-model="DailyTaskReport.remark">
+            <md-input-container class="md-block flex-gt-sm">
+                <label>Status</label>
+                <md-select ng-model="DailyTaskReport.task_status" required="">
+                    <md-option value=""> Select Task Status</md-option>
+                    <md-option value="Completed">Completed</md-option>
+                    <md-option value="Working">Working</md-option>
+                    <md-option value="Pending">Pending</md-option>
+                </md-select>
             </md-input-container>
-        </md-card-content>
+        </div>
+        <md-input-container class="md-block">
+            <label>Task</label>
+            <input type="text" ng-model="DailyTaskReport.task" required>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>Remark</label>
+            <input type="text" ng-model="DailyTaskReport.remark">
+        </md-input-container>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
         <md-button class="md-primary" type="submit">Submit</md-button>

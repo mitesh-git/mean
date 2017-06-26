@@ -37,7 +37,7 @@ module.exports = function(Mypackage) {
             dailyreport.save(function (err, result) {
                 if (err)
                 return  res.send(500, { error: err });
-                return res.send("succesfully saved");
+                return res.send('succesfully saved');
             });
         },
         EditTaskReport : function(req,res){
@@ -46,7 +46,7 @@ module.exports = function(Mypackage) {
             DailyReport.findOneAndUpdate(query, req.body, {upsert:true}, function(err, doc){
                 if (err)
                     return  res.send(500, { error: err });
-                return res.send("succesfully saved");
+                return res.send('succesfully saved');
             });
         },
         ListTaskReports:function (req,res) {
@@ -59,13 +59,13 @@ module.exports = function(Mypackage) {
             DailyReport.remove({_id: req.params.taskID}, function (err, result) {
                 if (err)
                     return  res.send(500, { error: err });
-                return res.send("Deleted");
+                return res.send('Deleted');
             });
         },
         SendTaskEmail:function (req,res) {
             var MailString;
             var userTaskIds = [];
-            var users   = [];         // shortcut to find them faster afterwards
+            //var users   = [];         // shortcut to find them faster afterwards
             for (var key in req.body) {      // first build the search array
                 if (key) {
                     userTaskIds.push( new mongoose.Types.ObjectId( key ) );           // for the Mongo query
@@ -74,30 +74,26 @@ module.exports = function(Mypackage) {
             }
             DailyReport.find( {_id: {$in: userTaskIds}} ,function(err, userTasks) {
                 if (err)
-                    callback( err, list);
+                    console.log('err');
                 else {
                     var UserTaskDate = '',
                         UserTask = '',
                         UserTaskStatus = '',
                         UserTaskRemark = '';
-                    MailString = "<table width='500px'><thead><tr><th>Date</th><th>Task</th><th>Status</th><th>Remark</th></tr></thead><tbody>";
+                    MailString = '<table width="500px"><thead><tr><th>Date</th><th>Task</th><th>Status</th><th>Remark</th></tr></thead><tbody>';
                     for (var key in userTasks) {
                         if(userTasks[key].date) UserTaskDate = userTasks[key].date.toDateString();
                         if(userTasks[key].task) UserTask = userTasks[key].task;
                         if(userTasks[key].task_status) UserTaskStatus = userTasks[key].task_status;
                         if(userTasks[key].remark) UserTaskRemark = userTasks[key].remark;
 
-                        MailString += "<tr><td>"+ UserTaskDate
-                            +"</td><td>"+UserTask
-                            +"</td><td>"+UserTaskStatus
-                            +"</td><td>"+UserTaskRemark
-                            +"</td></tr>";
+                        MailString += '<tr><td>'+ UserTaskDate+'</td><td>'+UserTask+'</td><td>'+UserTaskStatus+'</td><td>'+UserTaskRemark+'</td></tr>';
                     }
-                    MailString += "</tbody><table>"
+                    MailString += '</tbody><table>'
 
                     var mailOptions = {
-                        to: "sachin@monadinfotech.com",//req.user.email,
-                        from: "sachin@monadinfotech.com",//config.emailFrom,
+                        to: 'sachin@monadinfotech.com',//req.user.email,
+                        from: 'sachin@monadinfotech.com',//config.emailFrom,
 
                         subject: 'Status report ', // Subject line
                         text: MailString, // plain text body
@@ -110,6 +106,7 @@ module.exports = function(Mypackage) {
                             console.log(error);
                         }else{
                             //res.redirect('/');
+                            console.log(response);
                         }
                     });
                 }

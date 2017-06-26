@@ -27,7 +27,7 @@
                     $location.path('/mypackage/example');
                 })
                 .catch(function(response) {
-                    console.log("error");
+                    console.log('error');
                     console.log(response);
                 });
             },
@@ -57,7 +57,7 @@
                 )
                 .catch(
                     function(response) {
-                        console.log("error");
+                        console.log('error');
                         console.log(response);
                     }
                 );

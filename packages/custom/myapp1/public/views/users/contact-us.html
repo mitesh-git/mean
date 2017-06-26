@@ -1,0 +1,26 @@
+<md-content layout="row" flex layout-align="space-around center" layout-padding>
+    <md-card flex="40">
+        <form class="login-box" name="newContactus" data-ng-controller="ContactusController" ng-submit="sendemail(contactus)">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Contact Us  </span>
+                    <div ng-repeat="error in reg.registerError">
+                        <p class="alert alert-danger animated fadeIn">{{error.msg}}</p>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <md-input-container class="md-block">
+                    <input ng-model="contactus.name" placeholder="Full Name"  required>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <textarea ng-model="contactus.message" rows="5" placeholder="Message" required></textarea>
+                </md-input-container>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-primary" type="submit">Send Message</md-button>
+            </md-card-actions>
+        </form>
+    </md-card>
+    <img src="/meanStarter/assets/img/woman_ninja.png" alt="#">
+</md-content>

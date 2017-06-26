@@ -8,8 +8,11 @@
   <md-button class="md-button" aria-label="{{item.link}}" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ng-repeat="item in hdrctr.menus.main" ui-sref="{{item.link}}" mean-token="item.link">
     {{item.title}}
   </md-button>
+
   <span flex></span>
-  
+  <md-button class="md-button" aria-label="Contact Us" ui-route="/contact-us" ui-sref="contact-us">
+    Contact Us
+  </md-button>
   <md-button class="md-button" aria-label="Sign Up" ui-sref="auth.register" ng-if="!hdrctr.hdrvars.authenticated">
     Join
   </md-button>
