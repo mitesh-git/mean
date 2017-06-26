@@ -1,4 +1,5 @@
 <form name="signUpForm" ng-controller="RegisterCtrl as reg" ng-submit="reg.register()" class="login-box">
+
   <md-card-title>
     <md-card-title-text>
       <span class="md-headline">Join</span>
@@ -7,33 +8,63 @@
       </div>
     </md-card-title-text>
   </md-card-title>
+
   <md-card-content>
 
     <md-input-container class="md-block">
-      <label>Full Name</label>
-      <input type="text" ng-model="reg.user.name">
+      <label>First Name</label>
+      <input type="text" ng-model="reg.user.first_name">
     </md-input-container>
+
     <md-input-container class="md-block">
-      <label>Email Address</label>
-      <input type="email" ng-model="reg.user.email">
+      <label>Last Name</label>
+      <input type="text" ng-model="reg.user.last_name">
     </md-input-container>
+
     <md-input-container class="md-block">
       <label>Username</label>
       <input type="text" ng-model="reg.user.username">
     </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>Email Address</label>
+      <input type="email" ng-model="reg.user.email">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>Date of Birth</label>
+      <md-datepicker ng-model="reg.user.birth_date" md-max-date="maxDate" md-min-date="minDate" ng-required="true"></md-datepicker>
+    </md-input-container>
+
     <md-input-container class="md-block">
       <label>Password</label>
       <input type="password" ng-model="reg.user.password">
     </md-input-container>
+
     <md-input-container class="md-block">
       <label>Confirm Password</label>
       <input type="password" ng-model="reg.user.confirmPassword">
     </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>State/Province</label>
+      <input type="text" ng-model="reg.user.state">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>Country</label>
+      <input type="text" ng-model="reg.user.country">
+    </md-input-container>
+
   </md-card-content>
+
   <md-card-actions layout="row" layout-align="end center">
+
     <md-button ui-sref="forgot-password">Forgot Password</md-button>
     <md-button ui-sref="auth.login">Login</md-button>
     <span flex></span>
     <md-button class="md-primary" type="submit">Join</md-button>
+
   </md-card-actions>
+
 </form>
