@@ -12,7 +12,7 @@
 
         $scope.SendEmail = function () {
             Contactus.sendmail(this.contactus);
-            //$state.go('mypackage example page');
+
         };
     }
 

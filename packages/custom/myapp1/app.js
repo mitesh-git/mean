@@ -7,7 +7,7 @@ var Module = require('meanio').Module
 var path = require('path')
 var MeanStarter = new Module('meanStarter');
 var nodemailer = require('nodemailer'),
-    config = require('meanio').loadConfig();
+    config = require('meanio').getConfig();
 //var contactus = require('./public/controllers/contactus')();
 
 function sendMail(mailOptions) {
@@ -17,6 +17,7 @@ function sendMail(mailOptions) {
             console.log(err);
             return err;
         }
+        console.log(response);
         return response;
     });
 }
@@ -28,13 +29,17 @@ MeanStarter.register(function (app, users, system) {
   // Set views path, template engine and default layout
     app.set('views', path.join(__dirname, '/server/views'));
 
+    app.get('/api/capcha',function (req,res) {
+        var strategies = config.recapcha;
+        res.send(strategies);
+    });
+
     app.post('/api/contact-us', function(req, res) {
        // console.log(req);
         //contactus.ContactusMail(req, res);
         var ContactUsmailOptions = {
             to: config.emailFrom,//req.user.email,
             from: config.emailFrom,//config.emailFrom,
-
             subject: req.body.name+' Contacted.', // Subject line
             text: req.body.page, // plain text body
             html: "Email : <BR>"+req.body.email +"<BR> Message : <BR>"+ req.body.message // html body
@@ -43,15 +48,20 @@ MeanStarter.register(function (app, users, system) {
         sendMail(ContactUsmailOptions, function(error, response){
             if(error){
                 console.log("error" + error);
-                res.send(error);
+                response.send(error);
             }else{
                 console.log("Success");
-                res.send('succesfully Sent');
+                response.send('succesfully Sent');
             }
         });
+
+        res.send('succesfully Sent');
+
     });
 
-    MeanStarter.angularDependencies(['mean.system', 'mean.users'])
+    /*MeanStarter.aggregateAsset('js', './js/angular-recaptcha.min.js');*/
+
+    MeanStarter.angularDependencies(['mean.system', 'mean.users','vcRecaptcha'])
 
    return MeanStarter
 })

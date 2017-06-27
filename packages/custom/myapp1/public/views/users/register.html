@@ -20,12 +20,18 @@
       <div class="layout-gt-sm-row" layout-gt-sm="row">
             <md-input-container class="md-block flex-gt-sm">
               <label>First Name</label>
-              <input type="text" ng-model="reg.user.first_name" required>
+              <input type="text" name="firstname" ng-model="reg.user.first_name" required>
+                <div ng-messages="signUpForm.firstname.$error" ng-show="signUpForm.firstname.$touched && !signUpForm.firstname.$dirty">
+                    <div ng-messages-include="generic-messages">This field is required</div>
+                </div>
             </md-input-container>
 
             <md-input-container class="md-block flex-gt-sm">
               <label>Last Name</label>
-              <input type="text" ng-model="reg.user.last_name" required>
+              <input type="text" name="lastname" ng-model="reg.user.last_name" required>
+                <div ng-messages="signUpForm.lastname.$error" ng-show="signUpForm.lastname.$touched && !signUpForm.lastname.$dirty">
+                    <div ng-messages-include="generic-messages">This field is required</div>
+                </div>
             </md-input-container>
       </div>
       <div class="layout-gt-sm-row" layout-gt-sm="row">
@@ -35,30 +41,47 @@
           </md-input-container>
           <md-input-container class="md-block flex-gt-sm">
               <label>State/Province</label>
-              <input type="text" ng-model="reg.user.state" required>
+              <input type="text" name="state" ng-model="reg.user.state" required>
+              <div ng-messages="signUpForm.state.$error" ng-show="signUpForm.state.$touched && !signUpForm.state.$dirty">
+                  <div ng-messages-include="generic-messages">This field is required</div>
+              </div>
           </md-input-container>
 
           <md-input-container class="md-block flex-gt-sm">
               <label>Country</label>
-              <input type="text" ng-model="reg.user.country" required>
+              <input type="text" name="country" ng-model="reg.user.country" required>
+              <div ng-messages="signUpForm.country.$error" ng-show="signUpForm.country.$touched && !signUpForm.country.$dirty">
+                  <div ng-messages-include="generic-messages">This field is required</div>
+              </div>
           </md-input-container>
       </div>
     <md-input-container class="md-block">
       <label>Username</label>
-      <input type="text" name="username" ng-model="reg.user.username" ng-minlength="3" required>
-        <p ng-show="signUpForm.username.$error.minlength" class="help-block">Username is too short.</p>
+      <input type="text" name="username" ng-model="reg.user.username" ng-minlength="3" ng-maxlength="20" required>
+        <div ng-messages="signUpForm.username.$error" ng-show="signUpForm.username.$touched && !signUpForm.username.$dirty">
+            <!--<p ng-message="pattern">Username can only be alphanumeric with an optional underscore.</p>-->
+            <p ng-message="maxlength">Username cannot be longer than 20 characters.</p>
+            <p ng-message="minlength">Username cannot be less than 3 characters.</p>
+            <div ng-messages-include="generic-messages">This field is required</div>
+        </div>
     </md-input-container>
 
     <md-input-container class="md-block">
       <label>Email Address</label>
-      <input type="email" name="register-email" ng-model="reg.user.email" required>
+      <input type="email" name="registeremail" ng-model="reg.user.email" required>
+        <div ng-messages="signUpForm.registeremail.$error" ng-show="signUpForm.registeremail.$touched && !signUpForm.registeremail.$dirty">
+            <p ng-message="required">This field is required.</p>
+            <p ng-message="email">Please enter a valid email address.</p>
+        </div>
     </md-input-container>
 
 
 
     <md-input-container class="md-block">
       <label>Password</label>
-      <input type="password" name="registerpassword" ng-model="reg.user.password" required>
+      <input type="password" name="registerpassword" ng-model="reg.user.password" ng-minlength="8" ng-maxlength="20" required>
+        <p ng-show="signUpForm.registerpassword.$error.minlength" class="help-block">Password must be between 8-20 characters long.</p>
+        <p ng-show="signUpForm.registerpassword.$error.maxlength" class="help-block">Password cannot be more than 20 characters.</p>
     </md-input-container>
 
     <md-input-container class="md-block">
@@ -69,7 +92,18 @@
         reg.user.confirmPassword !== reg.user.password">Password and Confirm Password does not match.</span>
     </md-input-container>
 
+      <md-input-container class="md-block">
+          <div vc-recaptcha  ng-model="gRecaptchaResponse"
+               on-create="reg.setWidgetId(widgetId)"
+               on-success="reg.setResponse(response)"
+               on-expire="reg.cbExpiration()"
+               theme="'{{reg.recaptchaConfig.theme}}'"
+               size="'{{reg.recaptchaConfig.size}}'"
+               type="'{{reg.recaptchaConfig.type}}'"
+               key="'{{reg.recaptchaConfig.key}}'"
+               stoken="'{{reg.recaptchaConfig.stoken}}'"></div>
 
+      </md-input-container>
   </md-card-content>
 
   <md-card-actions layout="row" layout-align="end center">
