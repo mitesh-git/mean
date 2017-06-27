@@ -1,0 +1,20 @@
+<md-card ui-view="" flex="60" class="ng-scope _md flex-60">
+    <form name="newContactus" ng-controller="ContactusController" ng-submit="AddContact()">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Contact Us Page </span>
+                <div ng-repeat="error in reg.registerError">
+                    <p class="alert alert-danger animated fadeIn">{{error.msg}}</p>
+                </div>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <md-input-container class="md-block">
+                <textarea ng-model="contactus.contactuspage" required></textarea>
+            </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-primary" type="submit">Submit</md-button>
+        </md-card-actions>
+    </form>
+</md-card>

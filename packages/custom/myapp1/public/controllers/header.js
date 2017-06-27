@@ -11,6 +11,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
       isAdmin: MeanUser.isAdmin
     };
 
+
     // Default hard coded menu items for main menu
     var defaultMainMenu = [];
 
@@ -32,8 +33,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
 
     $rootScope.$on('loggedin', function () {
       queryMenu('main', defaultMainMenu);
-
-      vm.hdrvars = {
+            vm.hdrvars = {
         authenticated: MeanUser.loggedin,
         user: MeanUser.user,
         isAdmin: MeanUser.isAdmin

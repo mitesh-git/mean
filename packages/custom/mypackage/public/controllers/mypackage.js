@@ -6,6 +6,7 @@
     function MypackageController($scope,$state, Global, Mypackage, MeanUser,$stateParams,$resource,$mdDialog) {
         $scope.global = Global;
 
+
         $scope.CurrentUser = MeanUser.user.email;
 
         var UserTasks = $resource('/api/mypackage/usertasks');
@@ -70,8 +71,6 @@
             $scope.alert('nice');
             //$mdDialog.hide(answer);
         };
-
-
 
         $scope.SendTaskEmail = function(){
             Mypackage.SendTaskEmail($scope.checkbox);
