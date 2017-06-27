@@ -1,3 +1,38 @@
+<style>
+  .alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+  }
+  .alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+  }
+  .alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+  }
+  .alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+  }
+  .alert {
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 15px;
+  }
+  .header-alert {
+    position: absolute;
+    width: 100%;
+    top: 65px;
+    left: 0;
+  }
+</style>
+
 <div class="md-toolbar-tools" ng-controller="HeaderController as hdrctr">
   <div ng-controller="AdminController as vm" ng-if="hdrctr.hdrvars.isAdmin">
     <md-icon class="material-icons ng-binding" ng-click="vm.toggleMenu()">menu</md-icon>
@@ -9,7 +44,19 @@
     {{item.title}}
   </md-button>
   <span flex></span>
-  
+
+  <div data-ng-show="hdrctr.hdrvars.user.RequiredEmailConfirmation && hdrctr.hdrvars.user">
+    <div data-ng-controller="UsersController" class="alert alert-info animated fadeIn" style="margin-bottom: 0px;">
+      Your account is not confirmed yet, Please confirm it or <a href="" class="md-primary" ng-click="reSendEmailConfirmation(hdrctr.hdrvars.user)">Re-send</a> confirmation the email.
+
+      <div class="header-alert">
+        <div class="alert alert-danger animated fadeIn" data-ng-show="confirmationError">{{confirmationError}}</div>
+        <div class="alert alert-success animated fadeIn" data-ng-show="confirmationSuccess">{{confirmationSuccess}}</div>
+      </div>
+
+    </div>
+  </div>
+
   <md-button class="md-button" aria-label="Sign Up" ui-sref="auth.register" ng-if="!hdrctr.hdrvars.authenticated">
     Join
   </md-button>
@@ -21,7 +68,8 @@
     <md-button aria-label="Account" class="md-button top-link" ng-click="$mdOpenMenu()">
       <md-tooltip md-direction="left">Account Settings</md-tooltip>
       <md-icon>account_box</md-icon>
-      <span id="toolbar-username">{{hdrctr.hdrvars.user.username}}</span>
+      <span id="toolbar-username" data-ng-show="hdrctr.hdrvars.user.first_name">{{hdrctr.hdrvars.user.first_name}} {{hdrctr.hdrvars.user.last_name}}</span>
+      <span id="toolbar-username-1" data-ng-hide="hdrctr.hdrvars.user.first_name">{{hdrctr.hdrvars.user.name}}</span>
       <md-icon md-menu-origin>keyboard_arrow_down</md-icon>
     </md-button>
 

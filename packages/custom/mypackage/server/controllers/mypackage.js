@@ -96,8 +96,8 @@ module.exports = function(Mypackage) {
                     MailString += "</tbody><table>"
 
                     var mailOptions = {
-                        to: "sachin@monadinfotech.com",//req.user.email,
-                        from: "sachin@monadinfotech.com",//config.emailFrom,
+                        to: "ramesh@monadinfotech.com",//req.user.email,
+                        from: "ramesh@monadinfotech.com",//config.emailFrom,
 
                         subject: 'Status report ', // Subject line
                         text: MailString, // plain text body
