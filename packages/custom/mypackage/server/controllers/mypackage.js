@@ -43,7 +43,7 @@ module.exports = function(Mypackage) {
         EditTaskReport : function(req,res){
 
             var query = {'_id':req.body.id};
-            DailyReport.findOneAndUpdate(query, req.body, {upsert:true}, function(err, doc){
+            DailyReport.findByIdAndUpdate(req.body.id, req.body, {upsert:true}, function(err, doc){
                 if (err)
                     return  res.send(500, { error: err });
                 return res.send('succesfully saved');

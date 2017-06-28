@@ -39,7 +39,6 @@
   </div>
   <span>&nbsp;&nbsp;</span>
   <h2 class="pressed-text" mean-token="'MonadPlus TechLabs'">&nbsp;MonadPlus TechLabs</h2>
-
   <span flex></span>
   <div data-ng-show="hdrctr.hdrvars.user.RequiredEmailConfirmation && hdrctr.hdrvars.user">
     <div data-ng-controller="UsersController" class="alert alert-info animated fadeIn" style="margin-bottom: 0px;">
@@ -65,7 +64,7 @@
   </md-button>
 
   <md-menu ng-if="hdrctr.hdrvars.authenticated" md-position-mode="target-right target">
-    <md-button aria-label="Account" class="md-button top-link" ng-click="$mdOpenMenu()">
+    <md-button aria-label="Account" class="md-button top-link" ng-click="$mdMenu.open()">
       <md-tooltip md-direction="left">Account Settings</md-tooltip>
       <md-icon>account_box</md-icon>
       <span id="toolbar-username" data-ng-show="hdrctr.hdrvars.user.first_name">{{hdrctr.hdrvars.user.first_name}} {{hdrctr.hdrvars.user.last_name}}</span>
@@ -75,22 +74,22 @@
 
     <md-menu-content width="3">
 
-      <md-menu-item>
-        <md-button class="md-button" aria-label="Dashboard" ui-route="/dashboard" ui-sref="dashboard">
-          <md-icon>view_module</md-icon>
-          Dashboard
-        </md-button>
-      </md-menu-item>
+        <md-menu-item>
+            <md-button class="md-button" aria-label="Dashboard" ui-route="/dashboard" ui-sref="dashboard">
+                <md-icon>view_module</md-icon>
+                Dashboard
+            </md-button>
+        </md-menu-item>
 
-      <md-menu-item>
-        <md-button class="md-button" aria-label="Logout" ng-click="hdrctr.logout()">
+      <md-menu-item ng-if="hdrctr.hdrvars.user">
+        <md-button class="md-button" aria-label="Profile Edit" ng-click="hdrctr.editProfile()">
           <md-icon>Edit</md-icon>
           Profile Edit
         </md-button>
       </md-menu-item>
 
-      <md-menu-item>
-        <md-button class="md-button" aria-label="Logout" ng-click="hdrctr.logout()">
+      <md-menu-item ng-if="hdrctr.hdrvars.user">
+        <md-button class="md-button" aria-label="Logout" ng-click="hdrctr.changepassword()">
           <md-icon>Password</md-icon>
           Change Password
         </md-button>
