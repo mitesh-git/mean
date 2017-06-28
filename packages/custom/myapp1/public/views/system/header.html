@@ -40,9 +40,9 @@
   <span>&nbsp;&nbsp;</span>
   <img src="/meanStarter/assets/img/logo.png" alt="" class="MEAN-Logo"/>
   <h2 class="pressed-text" ui-sref="home" mean-token="'Task Report'">&nbsp;Task Report</h2>
-  <md-button class="md-button" aria-label="{{item.link}}" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ng-repeat="item in hdrctr.menus.main" ui-sref="{{item.link}}" mean-token="item.link">
+  <!--<md-button class="md-button" aria-label="{{item.link}}" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ng-repeat="item in hdrctr.menus.main" ui-sref="{{item.link}}" mean-token="item.link">
     {{item.title}}
-  </md-button>
+  </md-button>-->
 
   <span flex></span>
   <div data-ng-show="hdrctr.hdrvars.user.RequiredEmailConfirmation && hdrctr.hdrvars.user">
@@ -69,7 +69,7 @@
   </md-button>
 
   <md-menu ng-if="hdrctr.hdrvars.authenticated" md-position-mode="target-right target">
-    <md-button aria-label="Account" class="md-button top-link" ng-click="$mdOpenMenu()">
+    <md-button aria-label="Account" class="md-button top-link" ng-click="$mdMenu.open()">
       <md-tooltip md-direction="left">Account Settings</md-tooltip>
       <md-icon>account_box</md-icon>
       <span id="toolbar-username" data-ng-show="hdrctr.hdrvars.user.first_name">{{hdrctr.hdrvars.user.first_name}} {{hdrctr.hdrvars.user.last_name}}</span>
@@ -78,13 +78,13 @@
     </md-button>
 
     <md-menu-content width="3">
-      <md-menu-item>
-        <md-button class="md-button" aria-label="Profile Edit" ng-click="hdrctr.profileedit()">
+      <md-menu-item ng-if="hdrctr.hdrvars.user">
+        <md-button class="md-button" aria-label="Profile Edit" ng-click="hdrctr.editProfile()">
           <md-icon>Edit</md-icon>
           Profile Edit
         </md-button>
       </md-menu-item>
-      <md-menu-item>
+      <md-menu-item ng-if="hdrctr.hdrvars.user">
         <md-button class="md-button" aria-label="Logout" ng-click="hdrctr.changepassword()">
           <md-icon>Password</md-icon>
           Change Password

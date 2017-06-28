@@ -1,0 +1,88 @@
+    <md-dialog aria-label="ProfileEdit dialog" role="dialog " flex="50">
+        <md-toolbar class="_md _md-toolbar-transitions">
+            <div class="md-toolbar-tools">
+                <h2>Update Profile</h2>
+                <span flex="" class="flex"></span>
+                <button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="true" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog" class="ng-scope" role="img">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></md-icon>
+                </button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content  layout-fill>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline"></span>
+                  <div ng-repeat="error in updateProfileError">
+                    <p class="alert alert-danger animated fadeIn">{{error.msg}}</p>
+                  </div>
+                 </md-card-title-text>
+              </md-card-title>
+
+              <md-card-content>
+
+                    <md-input-container class="md-block flex-gt-sm">
+                      <label>First Name</label>
+                      <input type="text" name="firstname" ng-model="profileuser.profile_first_name" required>
+                        <div ng-messages="signUpForm.firstname.$error" ng-show="signUpForm.firstname.$touched && !signUpForm.firstname.$dirty">
+                            <div ng-messages-include="generic-messages">This field is required</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block flex-gt-sm">
+                      <label>Last Name</label>
+                      <input type="text" name="lastname" ng-model="profileuser.profile_last_name" required>
+                        <div ng-messages="signUpForm.lastname.$error" ng-show="signUpForm.lastname.$touched && !signUpForm.lastname.$dirty">
+                            <div ng-messages-include="generic-messages">This field is required</div>
+                        </div>
+                    </md-input-container>
+
+
+                  <md-input-container class="md-block">
+                      <label>Date of Birth</label>
+                      <md-datepicker ng-model="profileuser.profile_birth_date" md-max-date="maxDate" <!--md-min-date="userprofile.minDate"--> ng-required="true"></md-datepicker>
+                  </md-input-container>
+                  <md-input-container class="md-block flex-gt-sm">
+                      <label>State/Province</label>
+                      <input type="text" name="state" ng-model="profileuser.profile_state" required>
+                      <div ng-messages="signUpForm.state.$error" ng-show="signUpForm.state.$touched && !signUpForm.state.$dirty">
+                          <div ng-messages-include="generic-messages">This field is required</div>
+                      </div>
+                  </md-input-container>
+
+                  <md-input-container class="md-block flex-gt-sm">
+                      <label>Country</label>
+                      <input type="text" name="country" ng-model="profileuser.profile_country" required>
+                      <div ng-messages="signUpForm.country.$error" ng-show="signUpForm.country.$touched && !signUpForm.country.$dirty">
+                          <div ng-messages-include="generic-messages">This field is required</div>
+                      </div>
+                  </md-input-container>
+
+                <md-input-container class="md-block">
+                  <label>Username</label>
+                  <input type="text" name="username" ng-model="profileuser.profile_username" ng-minlength="3" ng-maxlength="20" disabled>
+                    <div ng-messages="signUpForm.username.$error" ng-show="signUpForm.username.$touched && !signUpForm.username.$dirty">
+                        <!--<p ng-message="pattern">Username can only be alphanumeric with an optional underscore.</p>-->
+                        <p ng-message="maxlength">Username cannot be longer than 20 characters.</p>
+                        <p ng-message="minlength">Username cannot be less than 3 characters.</p>
+                        <div ng-messages-include="generic-messages">This field is required</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                  <label>Email Address</label>
+                  <input type="email" name="registeremail" ng-model="profileuser.profile_email" disabled>
+                    <div ng-messages="signUpForm.registeremail.$error" ng-show="signUpForm.registeremail.$touched && !signUpForm.registeremail.$dirty">
+                        <p ng-message="required">This field is required.</p>
+                        <p ng-message="email">Please enter a valid email address.</p>
+                    </div>
+                </md-input-container>
+
+              </md-card-content>
+
+              <md-card-actions layout="row" layout-align="end center">
+                  <md-button class="md-primary" ng-click="cancel();"> Close </md-button>
+                  <md-button class="md-primary" ng-click="updateProfile();" ng-disabled="signUpForm.$invalid || profileuser.confirmPassword !== profileuser.password">Update Profile</md-button>
+              </md-card-actions>
+        </md-dialog-content>
+    </md-dialog>

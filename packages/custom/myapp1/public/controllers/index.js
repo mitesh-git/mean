@@ -47,10 +47,12 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
     }];
 
     $scope.$watch(function () {
-      for (var i = 0; i < $scope.sites.length; i += 1) {
-        if ($scope.sites[i].active) {
-          return $scope.sites[i];
-        }
+      if($scope.sites) {
+          for (var i = 0; i < $scope.sites.length; i += 1) {
+              if ($scope.sites[i].active) {
+                  return $scope.sites[i];
+              }
+          }
       }
     }, function (currentSlide, previousSlide) {
       if (currentSlide !== previousSlide) {
