@@ -38,9 +38,9 @@
     <md-icon class="material-icons ng-binding" ng-click="vm.toggleMenu()">menu</md-icon>
   </div>
   <span>&nbsp;&nbsp;</span>
-  <img src="/meanStarter/assets/img/logo.png" alt="" class="MEAN-Logo"/>
-  <h2 class="pressed-text" ui-sref="home" mean-token="'Task Report'">&nbsp;Task Report</h2>
-  <md-button class="md-button" aria-label="{{item.link}}" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ng-repeat="item in hdrctr.menus.main" ui-sref="{{item.link}}" mean-token="item.link">
+  <h2 class="pressed-text" ui-sref="home" mean-token="'MonadPlus TechLabs'">&nbsp;MonadPlus TechLabs</h2>
+  <md-button class="md-button" aria-label="{{item.link}}" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}"
+             ng-repeat="item in hdrctr.menus.main" ui-sref="{{item.link}}" mean-token="item.link">
     {{item.title}}
   </md-button>
 
@@ -78,24 +78,35 @@
     </md-button>
 
     <md-menu-content width="3">
+
+      <md-menu-item>
+        <md-button class="md-button" aria-label="Dashboard" ui-route="/dashboard" ui-sref="dashboard">
+          <md-icon>view_module</md-icon>
+          Dashboard
+        </md-button>
+      </md-menu-item>
+
       <md-menu-item>
         <md-button class="md-button" aria-label="Logout" ng-click="hdrctr.logout()">
           <md-icon>Edit</md-icon>
           Profile Edit
         </md-button>
       </md-menu-item>
+
       <md-menu-item>
         <md-button class="md-button" aria-label="Logout" ng-click="hdrctr.logout()">
           <md-icon>Password</md-icon>
           Change Password
         </md-button>
       </md-menu-item>
+
       <md-menu-item>
         <md-button class="md-button" aria-label="Logout" ng-click="hdrctr.logout()">
           <md-icon>exit_to_app</md-icon>
           Logout
         </md-button>
       </md-menu-item>
+
     </md-menu-content>
   </md-menu>
 </div>
