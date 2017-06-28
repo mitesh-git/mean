@@ -13,13 +13,13 @@ module.exports = {
   },
   hostname: 'http://localhost:3000',
   app: {
-    name: 'Daily Status Report'
+    name: 'MonadPlus TechLabs'
   },
   strategies: {
     local: {
       enabled: true
     },
-    landingPage: '/',
+    landingPage: '/dashboard',
     facebook: {
       clientID: 'DEFAULT_APP_ID',
       clientSecret: 'APP_SECRET',
@@ -53,15 +53,16 @@ module.exports = {
   },
 
   //emailFrom: 'sachin@monadinfotech.com', // sender address like ABC <abc@example.com>
-
-  emailFrom: 'sachin@monadinfotech.com',
+  emailFrom: 'ramesh@monadinfotech.com',
   mailer: {
     service: 'smtp', // Gmail, SMTP
     host: 'smtp.mailtrap.io',
     port: 2525,
     auth: {
-        user: '4f898e169b955b',
-        pass: '7a8a91c096943a'
+        // user: '4f898e169b955b',
+        // pass: '7a8a91c096943a'
+      user: '27062dd8699720',
+      pass: '546c1875a2add9'
     }
     /*
      service: 'gmail', // Gmail, SMTP

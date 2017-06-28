@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser', '$state','$mdDialog',
-  function ($scope, $rootScope, Menus, MeanUser, $state,$mdDialog) {
+angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser', '$state', '$mdSidenav', '$mdDialog',
+  function ($scope, $rootScope, Menus, MeanUser, $state, $mdSidenav, $mdDialog) {
     var vm = this;
 
     vm.menus = {};
@@ -9,6 +9,10 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
       authenticated: MeanUser.loggedin,
       user: MeanUser.user,
       isAdmin: MeanUser.isAdmin
+    };
+
+    vm.toggleMenu = function () {
+      $mdSidenav('left').toggle();
     };
 
 
@@ -41,7 +45,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
     });
 
     vm.logout = function () {
-      MeanUser.logout()
+      MeanUser.logout();
     };
     vm.editProfile = function() {
       var parentEl = angular.element(document.body);

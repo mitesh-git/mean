@@ -34,16 +34,11 @@
 </style>
 
 <div class="md-toolbar-tools" ng-controller="HeaderController as hdrctr">
-  <div ng-controller="AdminController as vm" ng-if="hdrctr.hdrvars.isAdmin">
-    <md-icon class="material-icons ng-binding" ng-click="vm.toggleMenu()">menu</md-icon>
+  <div ng-if="hdrctr.hdrvars.isAdmin">
+    <md-icon class="material-icons ng-binding" ng-click="hdrctr.toggleMenu()">menu</md-icon>
   </div>
   <span>&nbsp;&nbsp;</span>
-  <img src="/meanStarter/assets/img/logo.png" alt="" class="MEAN-Logo"/>
-  <h2 class="pressed-text" ui-sref="home" mean-token="'Task Report'">&nbsp;Task Report</h2>
-  <!--<md-button class="md-button" aria-label="{{item.link}}" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ng-repeat="item in hdrctr.menus.main" ui-sref="{{item.link}}" mean-token="item.link">
-    {{item.title}}
-  </md-button>-->
-
+    <h2 class="pressed-text" ui-sref="home" mean-token="'MonadPlus TechLabs'">&nbsp;MonadPlus TechLabs</h2>
   <span flex></span>
   <div data-ng-show="hdrctr.hdrvars.user.RequiredEmailConfirmation && hdrctr.hdrvars.user">
     <div data-ng-controller="UsersController" class="alert alert-info animated fadeIn" style="margin-bottom: 0px;">
@@ -78,24 +73,35 @@
     </md-button>
 
     <md-menu-content width="3">
+
+        <md-menu-item>
+            <md-button class="md-button" aria-label="Dashboard" ui-route="/dashboard" ui-sref="dashboard">
+                <md-icon>view_module</md-icon>
+                Dashboard
+            </md-button>
+        </md-menu-item>
+
       <md-menu-item ng-if="hdrctr.hdrvars.user">
         <md-button class="md-button" aria-label="Profile Edit" ng-click="hdrctr.editProfile()">
           <md-icon>Edit</md-icon>
           Profile Edit
         </md-button>
       </md-menu-item>
+
       <md-menu-item ng-if="hdrctr.hdrvars.user">
         <md-button class="md-button" aria-label="Logout" ng-click="hdrctr.changepassword()">
           <md-icon>Password</md-icon>
           Change Password
         </md-button>
       </md-menu-item>
+
       <md-menu-item>
         <md-button class="md-button" aria-label="Logout" ng-click="hdrctr.logout()">
           <md-icon>exit_to_app</md-icon>
           Logout
         </md-button>
       </md-menu-item>
+
     </md-menu-content>
   </md-menu>
 </div>
