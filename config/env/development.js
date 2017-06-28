@@ -53,15 +53,8 @@ module.exports = {
   },
 
   //emailFrom: 'sachin@monadinfotech.com', // sender address like ABC <abc@example.com>
+
   emailFrom: 'sachin@monadinfotech.com',
-  recapcha:{
-      key: 'key12345',//---- YOUR PUBLIC KEY GOES HERE ----
-      theme: 'light',//dark
-      stoken: 'stoken123456',//--- YOUR GENERATED SECURE TOKEN ---
-      size: 'normal',//compact
-      type: 'image',//audio / image
-      lang: 'en'//---- language code ----
-  },
   mailer: {
     service: 'smtp', // Gmail, SMTP
     host: 'smtp.mailtrap.io',
@@ -82,6 +75,14 @@ module.exports = {
          pass: 'monad@12358'
      }
      */
+  },
+  recapcha:{
+      key: '6LcpAicUAAAAABnTkZZWK33uBWeHU5ESqtxB77KQ',//---- YOUR PUBLIC KEY GOES HERE ----
+      theme: 'light',//dark
+      stoken: '6LcpAicUAAAAAKadNPgpFQ8HvllXdfkviWekezZz',//--- YOUR GENERATED SECURE TOKEN ---
+      size: 'normal',//compact
+      type: 'image',//audio / image
+      lang: 'en'//---- language code ----
   },
   secret: 'SOME_TOKEN_SECRET'
 }

@@ -1,5 +1,4 @@
 'use strict';
-
 // Setting up route
 angular.module('mean.meanStarter')
     .controller('ContactusController', ['$scope', '$rootScope','$http','MeanUser',  '$state', 'Global',
@@ -28,6 +27,14 @@ angular.module('mean.meanStarter')
             };
         }
     ])
+    /*.config(function(vcRecaptchaServiceProvider){
+        vcRecaptchaServiceProvider.setSiteKey('6LcpAicUAAAAABnTkZZWK33uBWeHU5ESqtxB77KQ')
+        vcRecaptchaServiceProvider.setTheme('light')
+        vcRecaptchaServiceProvider.setStoken('6LcpAicUAAAAAKadNPgpFQ8HvllXdfkviWekezZz')
+        vcRecaptchaServiceProvider.setSize('normal')
+        vcRecaptchaServiceProvider.setType('image')
+        vcRecaptchaServiceProvider.setLang('en')
+    })*/
     .config(['$meanStateProvider',
       function ($meanStateProvider) {
         // states for users

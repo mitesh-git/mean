@@ -17,44 +17,44 @@
   </md-card-title>
 
   <md-card-content>
-      <div class="layout-gt-sm-row" layout-gt-sm="row">
-            <md-input-container class="md-block flex-gt-sm">
-              <label>First Name</label>
-              <input type="text" name="firstname" ng-model="reg.user.first_name" required>
-                <div ng-messages="signUpForm.firstname.$error" ng-show="signUpForm.firstname.$touched && !signUpForm.firstname.$dirty">
-                    <div ng-messages-include="generic-messages">This field is required</div>
-                </div>
-            </md-input-container>
 
-            <md-input-container class="md-block flex-gt-sm">
-              <label>Last Name</label>
-              <input type="text" name="lastname" ng-model="reg.user.last_name" required>
-                <div ng-messages="signUpForm.lastname.$error" ng-show="signUpForm.lastname.$touched && !signUpForm.lastname.$dirty">
-                    <div ng-messages-include="generic-messages">This field is required</div>
-                </div>
-            </md-input-container>
-      </div>
-      <div class="layout-gt-sm-row" layout-gt-sm="row">
-          <md-input-container class="md-block">
-              <label>Date of Birth</label>
-              <md-datepicker ng-model="reg.user.birth_date" md-max-date="maxDate" md-min-date="minDate" ng-required="true"></md-datepicker>
-          </md-input-container>
-          <md-input-container class="md-block flex-gt-sm">
-              <label>State/Province</label>
-              <input type="text" name="state" ng-model="reg.user.state" required>
-              <div ng-messages="signUpForm.state.$error" ng-show="signUpForm.state.$touched && !signUpForm.state.$dirty">
-                  <div ng-messages-include="generic-messages">This field is required</div>
-              </div>
-          </md-input-container>
+        <md-input-container class="md-block flex-gt-sm">
+          <label>First Name</label>
+          <input type="text" name="firstname" ng-model="reg.user.first_name" required>
+            <div ng-messages="signUpForm.firstname.$error" ng-show="signUpForm.firstname.$touched && !signUpForm.firstname.$dirty">
+                <div ng-messages-include="generic-messages">This field is required</div>
+            </div>
+        </md-input-container>
 
-          <md-input-container class="md-block flex-gt-sm">
-              <label>Country</label>
-              <input type="text" name="country" ng-model="reg.user.country" required>
-              <div ng-messages="signUpForm.country.$error" ng-show="signUpForm.country.$touched && !signUpForm.country.$dirty">
-                  <div ng-messages-include="generic-messages">This field is required</div>
-              </div>
-          </md-input-container>
-      </div>
+        <md-input-container class="md-block flex-gt-sm">
+          <label>Last Name</label>
+          <input type="text" name="lastname" ng-model="reg.user.last_name" required>
+            <div ng-messages="signUpForm.lastname.$error" ng-show="signUpForm.lastname.$touched && !signUpForm.lastname.$dirty">
+                <div ng-messages-include="generic-messages">This field is required</div>
+            </div>
+        </md-input-container>
+
+
+      <md-input-container class="md-block">
+          <label>Date of Birth</label>
+          <md-datepicker ng-model="reg.user.birth_date" md-max-date="maxDate" md-min-date="minDate" ng-required="true"></md-datepicker>
+      </md-input-container>
+      <md-input-container class="md-block flex-gt-sm">
+          <label>State/Province</label>
+          <input type="text" name="state" ng-model="reg.user.state" required>
+          <div ng-messages="signUpForm.state.$error" ng-show="signUpForm.state.$touched && !signUpForm.state.$dirty">
+              <div ng-messages-include="generic-messages">This field is required</div>
+          </div>
+      </md-input-container>
+
+      <md-input-container class="md-block flex-gt-sm">
+          <label>Country</label>
+          <input type="text" name="country" ng-model="reg.user.country" required>
+          <div ng-messages="signUpForm.country.$error" ng-show="signUpForm.country.$touched && !signUpForm.country.$dirty">
+              <div ng-messages-include="generic-messages">This field is required</div>
+          </div>
+      </md-input-container>
+
     <md-input-container class="md-block">
       <label>Username</label>
       <input type="text" name="username" ng-model="reg.user.username" ng-minlength="3" ng-maxlength="20" required>
@@ -91,17 +91,13 @@
         signUpForm.registerconfirmpassword.$dirty &&
         reg.user.confirmPassword !== reg.user.password">Password and Confirm Password does not match.</span>
     </md-input-container>
-
       <md-input-container class="md-block">
-          <div vc-recaptcha  ng-model="gRecaptchaResponse"
-               on-create="reg.setWidgetId(widgetId)"
-               on-success="reg.setResponse(response)"
-               on-expire="reg.cbExpiration()"
-               theme="'{{reg.recaptchaConfig.theme}}'"
-               size="'{{reg.recaptchaConfig.size}}'"
-               type="'{{reg.recaptchaConfig.type}}'"
-               key="'{{reg.recaptchaConfig.key}}'"
-               stoken="'{{reg.recaptchaConfig.stoken}}'"></div>
+
+                <div vc-recaptcha
+                     on-create="reg.setWidgetId(widgetId)"
+                     on-success="reg.setResponse(response)"
+                     on-expire="reg.cbExpiration()"
+                key="reg.recaptchaConfig.key"></div>
 
       </md-input-container>
   </md-card-content>
@@ -114,5 +110,4 @@
     <md-button class="md-primary" type="submit" ng-disabled="signUpForm.$invalid || reg.user.confirmPassword !== reg.user.password">Join</md-button>
 
   </md-card-actions>
-
 </form>
