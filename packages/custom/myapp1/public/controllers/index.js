@@ -47,6 +47,9 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
     }];
 
     $scope.$watch(function () {
+      if(typeof $scope.sites === 'undefined') {
+        $scope.sites = [];
+      }
       for (var i = 0; i < $scope.sites.length; i += 1) {
         if ($scope.sites[i].active) {
           return $scope.sites[i];

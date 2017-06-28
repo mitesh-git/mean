@@ -54,4 +54,11 @@ angular.module('mean.meanStarter')
             };
         }
     ])
+
+    // To define controllers
+    .controller('DashboardController', ['$scope', '$rootScope','$http','MeanUser',  '$state', 'Global',
+        function($scope) {
+            $scope.dashboard = {};
+        }
+    ])
 ;
