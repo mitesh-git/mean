@@ -37,7 +37,7 @@
 
       <md-input-container class="md-block">
           <label>Date of Birth</label>
-          <md-datepicker ng-model="reg.user.birth_date" md-max-date="maxDate" md-min-date="minDate" ng-required="true"></md-datepicker>
+          <md-datepicker ng-model="reg.user.birth_date" md-max-date="reg.maxDate" <!--md-min-date="reg.minDate"--> ng-required="true"></md-datepicker>
       </md-input-container>
       <md-input-container class="md-block flex-gt-sm">
           <label>State/Province</label>
@@ -93,7 +93,7 @@
     </md-input-container>
       <md-input-container class="md-block">
 
-                <div vc-recaptcha
+                <div vc-recaptcha vcRecaptchaService
                      on-create="reg.setWidgetId(widgetId)"
                      on-success="reg.setResponse(response)"
                      on-expire="reg.cbExpiration()"

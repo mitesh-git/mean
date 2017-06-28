@@ -5,7 +5,7 @@
       <p class="error-text" ng-if="login.loginError">{{login.loginError}}</p>
       <!--<p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block">Email is required.</p>
       <p ng-show="loginForm.password.$invalid && !loginForm.password.$pristine" class="help-block">Password is required.</p>
-      <p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block">Enter a valid email.</p>-->
+      <p ng-show="loginForm.email.$invalid &&  !loginForm.email.$pristine" class="help-block">Enter a valid email.</p>-->
 
     </md-card-title-text>
   </md-card-title>
@@ -20,6 +20,15 @@
       <p ng-show="loginForm.password.$error.minlength" class="help-block">Password is too short.</p>
       <p ng-show="loginForm.password.$error.maxlength" class="help-block">Password is too long.</p>
     </md-input-container>
+    <md-input-container class="md-block" ng-if="login.loginattemptfail > 1">
+
+      <div vc-recaptcha vcRecaptchaService
+           on-create="login.setWidgetId(widgetId)"
+           on-success="login.setResponse(response)"
+           on-expire="login.cbExpiration()"
+           key="login.recaptchaConfig.key"></div>
+
+    </md-input-container>
   </md-card-content>
   <md-card-actions layout="row" layout-align="end center">
     <md-button ui-sref="forgot-password">Forgot Password</md-button></div>
@@ -27,4 +36,5 @@
     <span flex></span>
     <md-button class="md-primary" type="submit" ng-disabled="loginForm.$invalid">Login</md-button>
   </md-card-actions>
+
 </form>
