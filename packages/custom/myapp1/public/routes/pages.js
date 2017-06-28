@@ -9,7 +9,12 @@ angular.module('mean.meanStarter')
             $meanStateProvider
                 .state('dashboard', {
                     url: '/dashboard',
-                    templateUrl: 'meanStarter/views/pages/dashboard.html'
+                    templateUrl: 'meanStarter/views/pages/dashboard.html',
+                    resolve: {
+                        loggedin: function (MeanUser) {
+                            return MeanUser.checkLoggedin()
+                        }
+                    }
                 })
                 .state('contact-us', {
                     url: '/contact-us',

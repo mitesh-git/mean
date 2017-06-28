@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser', '$state',
-  function ($scope, $rootScope, Menus, MeanUser, $state) {
+angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser', '$state', '$mdSidenav',
+  function ($scope, $rootScope, Menus, MeanUser, $state, $mdSidenav) {
     var vm = this;
 
     vm.menus = {};
@@ -9,6 +9,10 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
       authenticated: MeanUser.loggedin,
       user: MeanUser.user,
       isAdmin: MeanUser.isAdmin
+    };
+
+    vm.toggleMenu = function () {
+      $mdSidenav('left').toggle();
     };
 
 
